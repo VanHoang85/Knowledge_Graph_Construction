@@ -39,9 +39,13 @@ The main file of the entire project is `main.py`. The file accepts these followi
 The most important argument is `--perform`, in which you need to specify which task to perform. Guide to each action is as follows:
 
 For `--perform read-corpus`, relevant arguments are `path_to_data_dir`, `corpus_name`, and `max_sent`.
+
 For `--perform extract`, relevant arguments are `path_to_data_dir` (if path is different from default), and `mark_print`.
+
 For `--perform cluster`, relevant arguments are `path_to_data_dir` (if path is different from default), `distance_metric`, `linkage`, and `distance_threshold`.
+
 For `--perform evaluate`, relevant arguments are `path_to_data_dir` (if path is different from default), and `ranked_metric`.
+
 For `--perform visual`, relevant arguments are `path_to_data_dir` (if path is different from default), `with_data`, and `num_nodes`.
 
 Or you can simply type `--perform all` to run everything from beginning to end. Be warned that a lot of information will be printed. Defaults are set up as specified in the project report.

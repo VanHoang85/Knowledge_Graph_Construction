@@ -1,0 +1,9 @@
+bcubed==1.5
+flair==0.6.1
+graphviz==0.14.1
+matplotlib==3.3.2
+networkx==2.5
+numpy==1.19.2
+rdflib==5.0.0
+scikit_learn==0.23.2
+stanza==1.1.1

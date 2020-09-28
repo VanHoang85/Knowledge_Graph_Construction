@@ -1,6 +1,14 @@
 # Knowledge_Graph_Construction
 **A coursework project for Knowledge Discovery class**
 
+If knowledge discovery is about identifying potentially useful patterns in data, knowledge graph (KG) would be the representation of these patterns, structured into entities and semantic relationships between them. 
+KG sits at the intersection of knowledge discovery, data mining, Semantic Web and Natural Language Processing, allowing information to be reasoned and inferred about by computers. 
+In other words, KG provides the kind of structured data, and factual knowledge, creating an impression of machines which possess intelligence and common sense similar to humans.
+
+The motivation for this project is two-fold. 
+First would be the desire to find out what scientists have discovered about this deadly virus in relation with other diseases and chemicals. 
+The second motivation is to learn how to construct a domain-specific KG from scratch in order to facilitate a research need to collect information from unstructured text.
+
 -----------------------------
 
 ### Dependencies

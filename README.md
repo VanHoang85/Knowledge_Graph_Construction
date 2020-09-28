@@ -1,4 +1,4 @@
-# Knowledge_Graph_Construction
+# Knowledge Graph Construction
 **A coursework project for Knowledge Discovery class**
 
 If knowledge discovery is about identifying potentially useful patterns in data, knowledge graph (KG) would be the representation of these patterns, structured into entities and semantic relationships between them. 

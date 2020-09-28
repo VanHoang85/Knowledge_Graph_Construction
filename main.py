@@ -10,7 +10,7 @@ from evaluation import *
 
 
 def run_read_corpus():
-    read_data(args.path_do_data_dir, args.corpus_name, args.max_sent)
+    read_data(args.path_to_data_dir, args.corpus_name, args.max_sent)
 
 
 def run_extraction():
@@ -22,7 +22,7 @@ def run_extraction():
     print_entity_info(entity_tracker)
     print_pattern_info(pattern_tracker)
 
-    write_compressed_data([entity_tracker, pattern_tracker, matrix], 'trackers', args.path_do_data_dir)
+    write_compressed_data([entity_tracker, pattern_tracker, matrix], 'trackers', args.path_to_data_dir)
 
 
 def run_clustering():
@@ -39,7 +39,7 @@ def run_clustering():
 
     # save clusters as obj
     cluster_info = dict({'n_clusters': clusters.n_clusters_, 'labels': clusters.labels_})
-    write_compressed_data([cluster_info, cp_matrix], 'clusters', args.path_do_data_dir)
+    write_compressed_data([cluster_info, cp_matrix], 'clusters', args.path_to_data_dir)
 
 
 def run_evaluation():
@@ -52,7 +52,7 @@ def run_evaluation():
 
     print_cido_info(cido)
 
-    write_compressed_data(cido, 'cido', args.path_do_data_dir)
+    write_compressed_data(cido, 'cido', args.path_to_data_dir)
 
     if len(cido.identity_pairs) > 0:
         cluster_dict, cido_dict = build_eval_dicts(clusters, cido, entity_tracker)
@@ -152,12 +152,12 @@ def visual_cido(cido):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser('Project for Knowledge Discovery course \nKnowledge Graph Construction')
-    parser.add_argument('--perform', type=str, default='read-corpus', const='read-corpus', nargs='?',
+    parser.add_argument('--perform', type=str, default='extract', const='extract', nargs='?',
                         choices=['read-corpus', 'extract', 'cluster', 'evaluate', 'visual', 'all'],
                         help='Six choices: read-corpus, extract, cluster, evaluate, visual, all')
-    parser.add_argument('--path_do_data_dir', type=str, default=os.path.join(os.getcwd(), 'data'))
+    parser.add_argument('--path_to_data_dir', type=str, default=os.path.join(os.getcwd(), 'data'))
     parser.add_argument('--corpus_name', type=str, default='covid19.vert')
-    parser.add_argument('--max_sent', type=int, default=10000000)
+    parser.add_argument('--max_sent', type=int, default=1000)
     parser.add_argument('--mark_print', type=int, default=None,
                         help='Print out features for the chosen sentence')
     parser.add_argument('--distance_metric', type=str, default='cosine', const='cosine', nargs='?',
@@ -174,11 +174,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.perform == 'read-corpus':
-        run_read_corpus() if os.path.isfile(os.path.join(args.path_do_data_dir, args.corpus_name)) \
+        run_read_corpus() if os.path.isfile(os.path.join(args.path_to_data_dir, args.corpus_name)) \
             else print('Please give valid path and/or filename')
 
     elif args.perform == 'extract':
-        corpus_path = os.path.join(args.path_do_data_dir, 'corpus.zipped')
+        corpus_path = os.path.join(args.path_to_data_dir, 'corpus.zipped')
 
         if os.path.isfile(corpus_path):
             run_extraction()
@@ -187,12 +187,12 @@ if __name__ == '__main__':
             sys.exit()
 
     elif args.perform == 'cluster':
-        trackers_path = os.path.join(args.path_do_data_dir, 'trackers.zipped')
+        trackers_path = os.path.join(args.path_to_data_dir, 'trackers.zipped')
         run_clustering()
 
     elif args.perform == 'evaluate':
-        cluster_path = os.path.join(args.path_do_data_dir, 'clusters.zipped')
-        trackers_path = os.path.join(args.path_do_data_dir, 'trackers.zipped')
+        cluster_path = os.path.join(args.path_to_data_dir, 'clusters.zipped')
+        trackers_path = os.path.join(args.path_to_data_dir, 'trackers.zipped')
 
         if os.path.isfile(cluster_path):
             run_evaluation()
@@ -201,8 +201,8 @@ if __name__ == '__main__':
             sys.exit()
 
     elif args.perform == 'visual':
-        trackers_path = os.path.join(args.path_do_data_dir, 'trackers.zipped')
-        cido_path = os.path.join(args.path_do_data_dir, 'cido.zipped')
+        trackers_path = os.path.join(args.path_to_data_dir, 'trackers.zipped')
+        cido_path = os.path.join(args.path_to_data_dir, 'cido.zipped')
 
         if os.path.isfile(trackers_path):
             run_visualization()
@@ -211,13 +211,13 @@ if __name__ == '__main__':
             sys.exit()
 
     elif args.perform == 'all':
-        run_read_corpus() if os.path.isfile(os.path.join(args.path_do_data_dir, args.corpus_name)) \
+        run_read_corpus() if os.path.isfile(os.path.join(args.path_to_data_dir, args.corpus_name)) \
             else print('Please give valid path and/or filename')
 
-        corpus_path = os.path.join(args.path_do_data_dir, 'corpus.zipped')
-        cluster_path = os.path.join(args.path_do_data_dir, 'clusters.zipped')
-        trackers_path = os.path.join(args.path_do_data_dir, 'trackers.zipped')
-        cido_path = os.path.join(args.path_do_data_dir, 'cido.zipped')
+        corpus_path = os.path.join(args.path_to_data_dir, 'corpus.zipped')
+        cluster_path = os.path.join(args.path_to_data_dir, 'clusters.zipped')
+        trackers_path = os.path.join(args.path_to_data_dir, 'trackers.zipped')
+        cido_path = os.path.join(args.path_to_data_dir, 'cido.zipped')
 
         run_extraction()
         run_clustering()
